@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel = "stylesheet" href = "static/css/styles.css">
+    </head>
+<body>
+
+<h3>Terraforming Mars Calculator</h3>
+
+<h4>Production Table</h4>
+
+<table>
+    <tr>
+        <th></th>
+        <th><img src="images/cropped/credit_symbol.jpg" alt ="credit_symbol"></th>
+        <th><img src="images/cropped/steel_symbol.jpg" alt ="steel_symbol"></th>
+        <th><img src="images/cropped/titanium_symbol.jpg" alt ="titanium_symbol"></th>
+        <th><img src="images/cropped/plant_symbol.jpg" alt ="plant_symbol"></th>
+        <th><img src="images/cropped/electric_symbol.jpg" alt ="electric_symbol"></th>
+        <th><img src="images/cropped/heat_symbol.jpg" alt ="heat_symbol"></th>
+    </tr>
+    <tr>
+        <th>Production</th>
+        <th><input type = "number" id = "gold_production" value = 0></th>
+        <th><input type = "number" id = "steel_production" value = 0></th>
+        <th><input type = "number" id = "titanium_production" value = 0></th>
+        <th><input type = "number" id = "plant_production" value = 0></th>
+        <th><input type = "number" id = "electric_production" value = 0></th>
+        <th><input type = "number" id = "heat_production" value = 0></th>
+    </tr>
+    <tr>
+        <th>Resources</th>
+        <th><input type = "number" id = "gold_resource" value = 0></th>
+        <th><input type = "number" id = "steel_resource" value = 0></th>
+        <th><input type = "number" id = "titanium_resource" value = 0></th>
+        <th><input type = "number" id = "plant_resource" value = 0></th>
+        <th><input type = "number" id = "electric_resource" value = 0></th>
+        <th><input type = "number" id = "heat_resource" value = 0></th>
+    </tr>
+</table>
+<br>
+<button onclick="nextGeneration()">Next Generation</button>
+
+<script>
+    function nextGeneration() {
+        // Increase Heat
+        // TODO: Why isn't this updating in the table?
+        // Feels like there should be a simplier way to code this
+        var heatProdInt = +document.getElementById('heat_production').value
+        var heatResourceInt = +document.getElementById('heat_resource').value
+        heatResourceInt += heatProdInt;
+        document.getElementbyId('heat_resource') = heatResourceInt;
+        alert('New Generation');
+    }
+</script>
+
+</body>
+</html>
+

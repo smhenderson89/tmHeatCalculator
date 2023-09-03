@@ -1,0 +1,22 @@
+h3 {
+  text-align: center;
+}
+
+table, th, td {
+    border: 1px solid black;
+  }
+
+tr {
+    font-size: medium;
+}
+
+input {
+  width: 6ch;
+  text-align: center;
+  font-size: medium
+}
+
+.flex-container {
+  display: flex;
+  
+}
