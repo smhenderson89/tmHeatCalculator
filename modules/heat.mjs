@@ -42,8 +42,9 @@ export function HeatCaclcuator(data, maxGeneration){
     If there is enough heat to increase temperature, do it
     Then show current resources 
     */
-   for (let i = data.curGeneration; i <= maxGeneration; i++) {
-
+   for (let i = data.curGeneration; i < maxGeneration; i++) {
+    AsteroidHit(data)
+    NextGeneration(data)
    }
 }
 
@@ -65,29 +66,30 @@ export function PrintResources(data) {
 }
 
 export function AsteroidHit(data) {
-    if (data.heatRes >= heatAdvance) {
+    if (data.heatRes >= heatAdvance && data.heatGenerated <= heatRequired) {
         while (data.heatRes >= heatAdvance) {
-            data.curTemp+=2;
-            if (data.curTemp == -24 || -20) { // Increase heatProd if hit -24 or -20
+            data.curTemp+=2; // Increase temperature
+            // log(chalk.green(`DEBUG: CurrentTemp is: ${data.curTemp}`));
+            if (data.curTemp == -24 || data.curTemp == -20) { // Increase heatProd if hit -24 or -20
                 data.heatProd++;
                 log(chalk.red(`Heat Prod Increase! : ${data.heatProd-1} -> ${data.heatProd}`))
             }
             data.heatRes -= heatAdvance;
-            log('Asteroid Hit -',chalk.red(` Current Temp: ${data.curTemp}`))
+            log('Convert Heat into Temperature -',chalk.red(` Current Temp: ${data.curTemp}`))
         }
     } else {
-        log(chalk.yellow('Not enough heat, skip'))
+        log(chalk.yellow('Insufficent heat to convert into temp, skip'))
     }
 }
 
 let testData = {
-    'heatRes' : 24,
-    'heatProd' : 3,
-    'elecRes' : 3,
-    'elecProd' : 0,
-    'heatGenerated' : 0,
-    'curTemp' : -26,
-    'curGeneration' : 1
+    'heatRes' : 21,
+    'heatProd' : 12,
+    'elecRes' : 12,
+    'elecProd' : 8,
+    'heatGenerated' : 80,
+    'curTemp' : -10,
+    'curGeneration' : 7
 }
 
-AsteroidHit(testData);
+HeatCaclcuator(testData,12);
