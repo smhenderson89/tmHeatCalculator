@@ -66,7 +66,7 @@ export function PrintResources(data) {
 }
 
 export function AsteroidHit(data) {
-    if (data.heatRes >= heatAdvance && data.heatGenerated <= heatRequired) {
+    if (data.heatRes >= heatAdvance && data.heatGenerated <= (heatRequired + 8)) {
         while (data.heatRes >= heatAdvance) {
             data.curTemp+=2; // Increase temperature
             // log(chalk.green(`DEBUG: CurrentTemp is: ${data.curTemp}`));
@@ -74,7 +74,7 @@ export function AsteroidHit(data) {
                 data.heatProd++;
                 log(chalk.red(`Heat Prod Increase! : ${data.heatProd-1} -> ${data.heatProd}`))
             }
-            data.heatRes -= heatAdvance;
+            data.heatRes -= heatAdvance; // Raise Temperature
             log('Convert Heat into Temperature -',chalk.red(` Current Temp: ${data.curTemp}`))
         }
     } else {
@@ -83,13 +83,13 @@ export function AsteroidHit(data) {
 }
 
 let testData = {
-    'heatRes' : 21,
+    'heatRes' : 17,
     'heatProd' : 12,
-    'elecRes' : 12,
-    'elecProd' : 8,
-    'heatGenerated' : 80,
-    'curTemp' : -10,
-    'curGeneration' : 7
+    'elecRes' : 2,
+    'elecProd' : 2,
+    'heatGenerated' : 0,
+    'curTemp' : -30,
+    'curGeneration' : 2
 }
 
 HeatCaclcuator(testData,12);
